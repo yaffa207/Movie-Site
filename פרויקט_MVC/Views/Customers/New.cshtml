@@ -1,0 +1,126 @@
+﻿@{
+    //Layout = "~/Views/Layout.cshtml";
+    Layout = "~/Views/Layout.cshtml";
+}
+@using פרויקט_MVC;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New</title>
+    <style>
+        p{
+            color:red;
+        }
+        div {
+            margin-left: 200px;
+        }
+        input {
+            width: 200px;
+            margin-left: 25px;
+            height: 22px;
+        }
+        label {
+            font-size: 35px;
+            margin-left: 75px;
+            color: wheat;
+        }
+        select {
+            width: 160px;
+            height: 30px;
+            margin-left: 25px;
+        }
+        h1 {
+            font-size: 50px;
+            margin-left: 275px;
+            color: wheat;
+        }
+        .sub {
+            margin-left: 200px;
+            width: 150px;
+            height: 35px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 35px;
+            background-color: black;
+            color: wheat;
+            border: 1px solid black;
+        }
+        body {
+            background-image: url('/Images/Paramount-Movie-Study-Audience-Enjoying-Movie.jpg');
+            background-size: 100%;
+        }
+        .ErrorUserName, #AgeError {
+            margin-left: 135px;
+            color: red;
+            font-size: 35px;
+        }
+        .input1 {
+            margin-left: 153px;
+        }
+        .input2 {
+            margin-left: 179px;
+        }
+        form {
+            background-color: black;
+            background-color: rgba(0, 0, 0, 0.61);
+            width:650px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a new customer</h1>
+    <div>
+        <form method="post" action="/Customers/Save" onsubmit="return myClientValidation()">
+
+            <label for="name">Name : </label>
+            <input class="input1" id="name" type="text" name="Name"/>
+            @*<p>@Html.ValidationMessageFor(cust => cust.)</p>*@
+            <p class="ErrorUserName">@ViewBag.EnterName @ViewBag.UserExist</p>
+            <p id="ErrorUserName" class="ErrorUserName"></p>    
+            
+            <label for="select">Subscription Type : </label>
+            <select id="select" name="Subscription">
+                <option>Quarterly</option>
+                <option>Annual</option>
+                <option>Monthly</option>
+                <option>Pay as you go</option>
+            </select>
+           <p>@ViewBag.EnterSubscription</p>
+
+            <br /><br />
+            <label for="age">Age : </label>
+            <input class="input2" id="age" type="number" name="Age" />
+            <p id="AgeError" class="ErrorUserName">@ViewBag.EnterAge</p>
+            <input type="submit" class="sub" value="Add Customer" />
+
+            @Html.ValidationSummary()
+        </form>
+    </div>
+    <script>
+        function myClientValidation() {
+            var clientName = document.getElementById("name").value.length;
+            var clientAge = document.getElementById("age").value;
+
+            if ((clientName == 0) || (clientAge == 0) || (clientAge < 18))
+            {
+                if (clientName == 0) {
+                    document.getElementById("ErrorUserName").innerHTML = "Enter your name";
+                }
+                if (clientAge < 18)
+                {
+                    document.getElementById("AgeError").innerHTML = "your age is less then 18";
+                }
+                if (clientAge == "") {
+                    document.getElementById("AgeError").innerHTML = "Enter your age";
+                }
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>

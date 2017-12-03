@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        li {
+            float: left;
+            text-decoration: none;
+            list-style: none;
+            background-color: black;
+        }
+        a {
+            margin-left: 95px;
+            font-size: 25px;
+            text-decoration-line: none;
+            color: wheat;
+            margin-right: 50px;
+        }
+            a:hover {
+                background-color: white;
+                /*background-color: wheat;*/
+                color: black;
+                /*rgb(137,22,18)*/
+                border-radius: 7px;
+                padding: 5px;
+            }
+        ul {
+            text-decoration: none;
+            background-color: black;
+        }
+        #footer {
+            position: absolute;
+            bottom: 0;
+            color: wheat;
+            font-size: 20px;
+            background-color: black;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.61);
+        }
+        .ColorMenu{
+            background-color:black;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="ColorMenu">
+        <ul>
+            <li><a href="/Home/Index">Home</a></li>
+            <li><a href="/Movies/Index">Movies</a></li>
+            <li><a href="/Customers/Index">Customers</a></li>
+            <li><a href="/Rentals/New">New Renatal</a></li>
+        </ul>
+    </p>
+    @RenderBody()
+
+    <br />
+    <p id="footer">&#64; 2017 Tec - Career Movie Rental</p>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿@*@using פרויקט_MVC.Models.Customer*@
+@model IEnumerable<Customer>
+@{
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid;
+            margin-left: 380px;
+            margin-top: 45px;
+        }
+
+       td, th {
+            border: 1px solid black;       
+        }
+        tr:nth-child(even) {
+            border: 1px solid;
+            width: 150px;
+            height: 32px;
+            text-align: center;
+            font-size: 27px;
+            color: wheat;
+            background-color: rgba(0, 0, 0, 0.61);
+        }
+        tr:nth-child(odd) {
+      
+            border: 1px solid;
+            width: 150px;
+            height: 32px;
+            text-align: center;
+            font-size: 27px;
+            color: black;
+            background-color: rgba(245, 222, 179, 0.61);
+        }
+
+        h1 {
+            margin-left: 375px;
+            font-size: 50px;
+            color: wheat;
+        }
+        div {
+            text-align: center;
+            background-color: black;
+            display: inline-block;
+            margin-left: 275px;
+            background-color: rgba(0, 0, 0, 0.00);
+        }
+        body {
+            background-image: url('/Images/Paramount-Movie-Study-Audience-Enjoying-Movie.jpg');
+            background-size: 100%;
+        }
+        .a {
+            margin-left: 145px;
+            background-color: black;
+            background-color: rgba(0, 0, 0, 0.61);
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <h1>All Customer</h1>
+    <table>
+        <tr>      
+            <th>Name</th>
+            <th>Subscription</th>
+            <th>Age</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Name</td>
+                <td>@item.Subscription</td>
+                <td>@item.Age</td>
+            </tr>
+        }
+    </table>
+
+    <br /><br /><br />
+   
+    <div><a class="a" href="/Customers/New">Cilck to add customer</a></div>
+    
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@{
+    Layout = "~/Views/Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New</title>
+    <style>
+        select {
+            margin-left: 50px;
+            width: 125px;
+            height: 25px;
+
+        }
+        input {
+            width: 200px;
+            margin-left: 25px;
+            height: 22px;
+        }
+        form {
+            font-size: 40px;
+            margin-left: 290px;
+            margin-top: 75px;
+        }
+        .Button {
+            margin-left: 150px;
+            width: 145px;
+            height: 35px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: black;
+            color: wheat;
+            border: 1px solid black;
+        }
+        h1 {
+            margin-left: 375px;
+            font-size: 50px;
+            color: wheat;
+        }
+        label {
+            color: wheat;
+        }
+        body {
+            background-image: url('/Images/Cinema-Wallpaper-High-Definition.jpg');
+            background-size: 100%;
+        }
+        .select {
+            margin-left: 167px;
+        }
+        .ErrorMessage{
+            color:red;
+        }
+        form {
+            background-color: black;
+            background-color: rgba(0, 0, 0, 0.61);
+            width: 520px;
+            padding:15px;
+        }
+    </style>
+</head>
+<body>
+    <br />
+    <h1>New movie</h1>
+
+    <div>
+        <form method="post" action="/Movies/Save" onsubmit="return Pass()">
+            <label for="MovieName">Movie Name :</label>
+            <input id="MovieName" type="text" name="MovieName" />
+            <p id="ErrorMessage" class="ErrorMessage">@ViewBag.Error</p> 
+            
+            <label for="select">Category :</label>
+             <select class="select" name="MovieCategory" id="select">
+                <option>Family</option>
+                <option>Romance</option>
+                <option>Comedy</option>
+                <option>Action</option>
+            </select>
+
+            <br /><br />
+            <input class="Button" type="submit" value="Add Movie" />
+        </form>
+    </div>
+
+    
+    <script>
+        function Pass() {
+            var MovieName = document.getElementById("MovieName").value.length;
+            var Error = document.getElementById("ErrorMessage");
+            if (MovieName == 0) {
+                Error.innerHTML = "Enter movie name";
+                Error.style.color = "red";
+                return false;
+            }
+            else {
+                return true;
+           }
+        }
+    </script>
+</body>
+</html>

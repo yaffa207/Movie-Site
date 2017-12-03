@@ -1,0 +1,9 @@
+﻿Liora,Annual,25
+Leah,Quarterly,20
+Miri,Quarterly,20
+Meni,Quarterly,30
+Ronnie,Quarterly,18
+Asaf,Quarterly,516
+Hagit,Quarterly,22
+Asaf1,Quarterly,18
+Keren,Pay as you go,32

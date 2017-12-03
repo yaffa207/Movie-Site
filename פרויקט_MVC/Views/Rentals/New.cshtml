@@ -1,0 +1,125 @@
+﻿@*@using פרויקט_MVC.Models*@
+@{
+    Layout = "~/Views/Layout.cshtml";
+}
+@model Rental
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New</title>
+    <style>
+        input {
+            width: 200px;
+            margin-left: 25px;
+            height: 22px;
+        }
+        label {
+            font-size: 35px;
+            margin-left: 250px;
+            color: wheat;
+        }
+        button {
+            margin-left: 450px;
+            margin-top: 45px;
+            width: 90px;
+            height: 35px;
+            font-size: 16px;
+            background-color: black;
+            color: wheat;
+            border: 1px solid black;
+        }
+        h1 {
+            margin-left: 350px;
+            font-size: 50px;
+            color: wheat;
+        }
+        body {
+            background-image: url('/Images/film-2205325_1920.jpg');
+            background-size: 100%;
+        }
+        #RentSucsses, #MovieAlreadyExist, #movieNotFound, #movieError, #customerNotFound, #userError {
+            font-size: 35px;
+            font-weight: bold;
+            margin-left: 350px;
+        }
+        .input1 {
+            margin-left: 70px;
+        }
+        div {
+            background-color: black;
+            background-color: rgba(0, 0, 0, 0.61);
+            padding:15px;    }
+    </style>
+</head>
+<body>
+    <br />
+    <h1>Rent a movie</h1>
+    <br />
+    <div>
+        <label for="user">Customer Name :</label>
+        <input type="text" name="UserNameRental" id="user" />
+        <p id="customerNotFound"></p> <p id="userError"></p>
+
+
+        <label for="movie">Movie Name :</label>
+        <input class="input1" type="text" name="MovieNameRental" id="movie" />
+
+        <p id="movieNotFound"></p> <p id="movieError"></p>
+        <p id="MovieAlreadyExist"></p>
+        <p id="RentSucsses"></p>
+
+        <button onclick="ajax()">Rent</button>
+    </div>
+
+
+    <script>
+        function ajax() {
+            var user = document.getElementById("user").value;
+            var movie = document.getElementById("movie").value;
+
+            if (user == "" || movie == "") {
+                if (user == "") {
+                    document.getElementById("userError").innerHTML = "Enter Name";
+                    document.getElementById("userError").style.color = "red";
+                    document.getElementById("userError").style.fontSize = "35px";
+                    document.getElementById("userError").style.fontWeight = "bold";
+                }
+                if (movie == "") {
+                    document.getElementById("movieError").innerHTML = "Enter Movie";
+                    document.getElementById("movieError").style.color = "red";
+                    document.getElementById("movieError").style.fontSize = "35px";
+                    document.getElementById("movieError").style.fontWeight = "bold";
+                }
+                return false;
+            }
+            else {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        var jsonObj = JSON.parse(this.responseText);
+                        if (jsonObj.key1 == true){
+                            document.getElementById("RentSucsses").innerHTML = jsonObj.key4;
+                            document.getElementById("RentSucsses").style.color = "green";
+                        }
+                        else {
+                            document.getElementById("customerNotFound").innerHTML = jsonObj.key;
+                            document.getElementById("customerNotFound").style.color = "red";
+                            document.getElementById("movieNotFound").innerHTML = jsonObj.key2;
+                            document.getElementById("movieNotFound").style.color = "red";
+                            document.getElementById("MovieAlreadyExist").innerHTML = jsonObj.key3;
+                            document.getElementById("MovieAlreadyExist").style.color = "red";
+                        }
+                    }
+                };
+                xhttp.open("Post", "/Rentals/CreateNewRentals?UserNameRental=" + user +
+                    "&MovieNameRental=" + movie);
+                xhttp.send();
+
+                return true;
+           }
+        }
+    </script>
+</body>
+</html>
